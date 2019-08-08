@@ -7,7 +7,7 @@ from flask import Flask, render_template, Response
 if os.environ.get('CAMERA'):
     Camera = import_module('camera_' + os.environ['CAMERA']).Camera
 else:
-    from camera_pi import Camera
+    from camera import Camera
 
 # Raspberry Pi camera module (requires picamera package)
 # from camera_pi import Camera
@@ -28,6 +28,11 @@ def gen(camera):
         yield (b'--frame\r\n'
                b'Content-Type: image/jpeg\r\n\r\n' + frame + b'\r\n')
 
+
+@app.route('/latest.jpg')
+def latest_image():
+    ''' Static image snapshot, useful for timelapse '''
+    return Response(Camera().get_frame(), mimetype='image/jpeg')
 
 @app.route('/stream.mjpg')
 def video_feed():
