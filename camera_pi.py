@@ -12,12 +12,12 @@ class Camera(BaseCamera):
         with picamera.PiCamera(resolution='800x600') as camera:
             # let camera warm up
             time.sleep(2)
-            if datetime.now().hour > 18 or datetime.now().hour < 6:
-                camera.iso = 800
-                camera.exposure_mode = 'off'
-                camera.awb_mode = 'off'
-                camera.awb_gains = (Fraction(19, 16), Fraction(143, 128))
-                camera.shutter_speed = 800000
+            # if datetime.now().hour > 18 or datetime.now().hour < 6:
+            #     camera.iso = 800
+            #     camera.exposure_mode = 'off'
+            #     camera.awb_mode = 'off'
+            #     camera.awb_gains = (Fraction(19, 16), Fraction(143, 128))
+            #     camera.shutter_speed = 800000
             camera.vflip = True
             camera.hflip = True
             stream = io.BytesIO()
