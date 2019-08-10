@@ -2,6 +2,7 @@
 from importlib import import_module
 import os
 from flask import Flask, render_template, Response
+import socket
 
 # import camera driver
 if os.environ.get('CAMERA'):
@@ -18,7 +19,7 @@ app = Flask(__name__)
 @app.route('/')
 def index():
     """Video streaming home page."""
-    return render_template('index.html')
+    return render_template('index.html', name=socket.gethostname())
 
 
 def gen(camera):

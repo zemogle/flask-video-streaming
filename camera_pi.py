@@ -2,6 +2,7 @@ import io
 import time
 import picamera
 from datetime import datetime
+from fractions import Fraction
 
 from base_camera import BaseCamera
 
